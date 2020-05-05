@@ -1,0 +1,20 @@
+{
+  "name": "graphql-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"json-server --watch server/db.json\" \"node index.js\"",
+    "fake:server": "json-server --watch server/db.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.13.0",
+    "axios": "^0.19.2",
+    "concurrently": "^5.2.0",
+    "graphql": "^15.0.0",
+    "json-server": "^0.16.1"
+  }
+}
