@@ -42,4 +42,58 @@ const getUsers = async function () {
   }
 };
 
-module.exports = { getTodos, getUsers, getTodo };
+const addTodo = async function (todo) {
+  try {
+    const response = await axios.post(todosUrl, { ...todo, userId: 1 });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const updateTodo = async function (id, todo) {
+  try {
+    const response = await axios.put(`${todosUrl}${id}`, {
+      ...todo,
+      userId: 1,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const deleteTodo = async function (id) {
+  try {
+    const response = await axios.delete(`${todosUrl}${id}`);
+    return {
+      success: true,
+      message: `Status : ${response.status} - Delete Successful`,
+      id,
+    };
+  } catch (error) {
+    console.error(error);
+    return { success: false, message: 'Delete failed', id: id };
+  }
+};
+
+const markAsCompleted = async function (id) {
+  try {
+    const response = await axios.patch(`${todosUrl}${id}`, {
+      completed: true,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+module.exports = {
+  getTodos,
+  getUsers,
+  getTodo,
+  addTodo,
+  updateTodo,
+  deleteTodo,
+  markAsCompleted,
+};
